@@ -35,3 +35,7 @@ body {
     border-style: solid;
     border-color: rgb(231, 179, 127);
 }
+
+#wordDisplay {
+    letter-spacing: 8px;
+}
