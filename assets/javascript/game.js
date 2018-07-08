@@ -27,8 +27,11 @@ const gameObj = {
           console.log(pos);
           undArray[pos] = wordChoice[pos].toUpperCase();
           console.log(undArray);
+          str = undArray.join('');
           pos = wordChoice.indexOf(key, pos + 1);
         }
+
+        return str;
         
         
     },
@@ -42,6 +45,7 @@ document.onkeyup = (event) => {
         gameObj.startDisp();
         console.log(wordChoice);
     } else if (event.key !== 'Enter') {
-        gameObj.letterHit(event);
+        wordDisplay.textContent = gameObj.letterHit(event);
+        
     }
 }
