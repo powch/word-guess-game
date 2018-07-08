@@ -1,5 +1,4 @@
 const words = ['espresso', 'americano', 'frappe', 'cappuccino', 'latte', 'macchiato', 'mocha', 'frappuccino', 'columbian', 'arabica'];
-const undArray = [];
 const rand = Math.floor(Math.random() * words.length);
 const wordChoice = words[rand];
 const letterArray = wordChoice.split('');
@@ -16,19 +15,22 @@ const gameObj = {
         for (let i = 0; i < letterArray.length; i++) {
             wordDisplay.textContent += '_';
         }
-
-        console.log(wordChoice);
-        console.log(letterArray);
-
     },
     letterHit(event) {
-        let pos = wordChoice.indexOf(event.key);
+        let key = event.key;
+        let str = wordDisplay.textContent;
+        let undArray = str.split('');
+        let pos = wordChoice.indexOf(key);
 
         while (pos !== -1) {
-            console.log(pos);
-            
-            pos = wordChoice.indexOf(event.key, pos + 1);
+          console.log(key);
+          console.log(pos);
+          undArray[pos] = wordChoice[pos].toUpperCase();
+          console.log(undArray);
+          pos = wordChoice.indexOf(key, pos + 1);
         }
+        
+        
     },
     letterMiss() {
 
@@ -38,6 +40,7 @@ const gameObj = {
 document.onkeyup = (event) => {
     if (event.key === 'Enter') {
         gameObj.startDisp();
+        console.log(wordChoice);
     } else if (event.key !== 'Enter') {
         gameObj.letterHit(event);
     }
