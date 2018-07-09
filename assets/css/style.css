@@ -6,7 +6,7 @@ body {
     background-size: cover;
 }
 
-#startScreen, #gameScreen, .remainBox, .missedBox {
+#startScreen, #gameScreen, #loseScreen, .remainBox, .missedBox {
     background-color: #373D39;
 }
 
@@ -14,7 +14,7 @@ body {
     display: block;
 }
 
-#gameScreen, #guessScreen {
+#gameScreen, #guessScreen, #loseScreen {
     display: none;
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 #missedLetters {
-    font-size: 2rem;
-    letter-spacing: 10px;
+    font-size: 3rem;
+    letter-spacing: 20px;
 }
 
 #guessRemain {

@@ -13,8 +13,8 @@
 <body>
 
     <div class="jumbotron jumbotron-fluid mt-5 shadow-lg" id="startScreen">
-        <div class="container">
-            <h1 class="display-4">Hangman</h1>
+        <div class="container text-center">
+            <h1 class="display-4">Welcome to Coffee Hangman</h1>
             <p class="lead">Press Enter to Start!</p>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-left">
-                    <h3>Wins:</h3>
+                    <h3>Wins: <span id="winDisplay"></span></h3>
                 </div>
             </div>
             <div class="row mt-3">
@@ -30,6 +30,12 @@
                     <h1 class="display-4" id="wordDisplay"></h1>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid mt-5 shadow-lg" id="loseScreen">
+        <div class="container text-center">
+            <h1 class="display-4">Too Bad!</h1>
+            <p class="lead">Press Escape to try again!</p>
         </div>
     </div>
     <div class="container">
