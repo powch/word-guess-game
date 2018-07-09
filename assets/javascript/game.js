@@ -6,12 +6,17 @@ const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const guessScreen = document.getElementById('guessScreen');
 const wordDisplay = document.getElementById('wordDisplay');
+const missedLetters = document.getElementById('missedLetters');
+const guessRemain = document.getElementById('guessRemain');
+const remain = 10;
+const badArray = ['Backspace', 'CapsLock', ' ', 'Tab', 'Control', 'Alt', 'Shift', 'Insert', 'Delete', 'End', 'Home', 'PageUp', 'PageDown', 'Pause', 'PrintScreen', 'Meta', ',', '.', '/', ';', '[', ']', "'", '\\', '-', '=', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 const gameObj = {
     startDisp() {
         startScreen.style.display = 'none';
         gameScreen.style.display = 'block';
         guessScreen.style.display = 'block';
+        guessRemain.textContent = remain;
         for (let i = 0; i < letterArray.length; i++) {
             wordDisplay.textContent += '_';
         }
@@ -22,21 +27,24 @@ const gameObj = {
         let undArray = str.split('');
         let pos = wordChoice.indexOf(key);
 
-        while (pos !== -1) {
-          console.log(key);
-          console.log(pos);
-          undArray[pos] = wordChoice[pos].toUpperCase();
-          console.log(undArray);
-          str = undArray.join('');
-          pos = wordChoice.indexOf(key, pos + 1);
-        }
-
-        return str;
-        
-        
+        if (pos === -1) {
+            return key.toUpperCase();
+        } else {
+            while (pos !== -1) {
+                undArray[pos] = wordChoice[pos].toUpperCase();
+                pos = wordChoice.indexOf(key, pos + 1);
+            }
+            return undArray.join('');
+        }   
     },
-    letterMiss() {
+    letterMiss(event) {
+        let key = event.key;
+        let str = missedLetters.textContent.toLowerCase();
+        let pos = str.indexOf(key);
 
+        if (pos === -1) {
+            return key.toUpperCase();
+        }
     }
 }
 
@@ -45,7 +53,16 @@ document.onkeyup = (event) => {
         gameObj.startDisp();
         console.log(wordChoice);
     } else if (event.key !== 'Enter') {
-        wordDisplay.textContent = gameObj.letterHit(event);
-        
+        for (let i = 0; i < badArray.length; i++) {
+            if (event.key === badArray[i]) {
+                return;
+            }
+        }
+        if (gameObj.letterHit(event).length > 1) {
+            wordDisplay.textContent = gameObj.letterHit(event);
+        } else if (gameObj.letterMiss(event) !== undefined) {
+            missedLetters.textContent += gameObj.letterMiss(event);
+            guessRemain.textContent--;
+        }
     }
 }
