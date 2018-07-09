@@ -1,7 +1,7 @@
 const words = ['espresso', 'americano', 'frappe', 'cappuccino', 'latte', 'macchiato', 'mocha', 'frappuccino', 'columbian', 'arabica'];
 const rand = Math.floor(Math.random() * words.length);
 const wordChoice = words[rand];
-const letterArray = wordChoice.split('');
+// const letterArray = wordChoice.split('');
 const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const guessScreen = document.getElementById('guessScreen');
@@ -21,7 +21,7 @@ const gameObj = {
         guessScreen.style.display = 'block';
         guessRemain.textContent = remain;
         winDisplay.textContent = wins;
-        for (let i = 0; i < letterArray.length; i++) {
+        for (let i = 0; i < wordChoice.length; i++) {
             wordDisplay.textContent += '_';
         }
     },
@@ -44,7 +44,7 @@ const gameObj = {
                 pos = wordChoice.indexOf(key, pos + 1);
             }
             return undArray.join('');
-        }   
+        }
     },
     letterMiss(event) {
         let key = event.key;
@@ -55,7 +55,7 @@ const gameObj = {
             return key.toUpperCase();
         }
     },
-    reset() {
+    resetDisplay() {
         startScreen.style.display = 'none';
         loseScreen.style.display = 'none';
         gameScreen.style.display = 'block';
@@ -63,10 +63,10 @@ const gameObj = {
         guessRemain.textContent = remain;
         wordDisplay.textContent = '';
         missedLetters.textContent = '';
-        for (let i = 0; i < letterArray.length; i++) {
+        for (let i = 0; i < wordChoice.length; i++) {
             wordDisplay.textContent += '_';
         }
-    }
+    },
 }
 
 document.onkeyup = (event) => {
@@ -74,7 +74,7 @@ document.onkeyup = (event) => {
         gameObj.startDisp();
         console.log(wordChoice);
     } else if (event.key === 'Escape') {
-        gameObj.reset();
+        gameObj.resetDisplay();
     } else if (event.key !== 'Enter') {
         for (let i = 0; i < badArray.length; i++) {
             if (event.key === badArray[i]) {
