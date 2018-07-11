@@ -80,16 +80,24 @@ let gameObj = {
         }
     },
     winReset() {
-        for (let i = 0; i < wordDisplay.textContent.length; i++) {
-            if (wordDisplay.textContent[i] === '_') {
-                return;
-            } else {
-                gameScreen.style.display = 'none';
-                winScreen.style.display = 'block;'
-                setInterval(() => {
-                    this.resetDisplay();
-                }, 1000);
-                this.wins++;
+        let str = wordDisplay.textContent;
+        let pos = str.indexOf('_');
+
+        if (pos === -1) {
+            gameScreen.style.display = 'none';
+            winScreen.style.display = 'block';
+            wordDisplay.textContent = '';
+            let timer = setInterval(() => {
+                gameScreen.style.display = 'block';
+                winScreen.style.display = 'none';
+                clearInterval(timer);
+            }, 1000);
+            guessRemain.textContent = this.remain;
+            missedLetters.textContent = '';
+            winDisplay.textContent++
+            let word = this.wordChoice();
+            for (let i = 0; i < word.length; i++) {
+                wordDisplay.textContent += '_';
             }
         }
     },

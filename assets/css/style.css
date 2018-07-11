@@ -6,7 +6,7 @@ body {
     background-size: 2560px auto;
 }
 
-#startScreen, #gameScreen, #loseScreen, .remainBox, .missedBox {
+#startScreen, #gameScreen, #loseScreen, #winScreen, .remainBox, .missedBox {
     background-color: #373D39;
 }
 
