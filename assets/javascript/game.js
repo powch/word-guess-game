@@ -1,6 +1,7 @@
 const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const guessScreen = document.getElementById('guessScreen');
+const winScreen = document.getElementById('winScreen');
 const wordDisplay = document.getElementById('wordDisplay');
 const missedLetters = document.getElementById('missedLetters');
 const guessRemain = document.getElementById('guessRemain');
@@ -78,6 +79,20 @@ let gameObj = {
             wordDisplay.textContent += '_';
         }
     },
+    winReset() {
+        for (let i = 0; i < wordDisplay.textContent.length; i++) {
+            if (wordDisplay.textContent[i] === '_') {
+                return;
+            } else {
+                gameScreen.style.display = 'none';
+                winScreen.style.display = 'block;'
+                setInterval(() => {
+                    this.resetDisplay();
+                }, 1000);
+                this.wins++;
+            }
+        }
+    },
 }
 
 document.onkeyup = (event) => {
@@ -100,5 +115,6 @@ document.onkeyup = (event) => {
                 gameObj.loseDisplay();
             }
         }
+        gameObj.winReset();
     }
 }
