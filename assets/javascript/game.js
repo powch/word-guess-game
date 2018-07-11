@@ -1,7 +1,3 @@
-const words = ['espresso', 'americano', 'frappe', 'cappuccino', 'latte', 'macchiato', 'mocha', 'frappuccino', 'columbian', 'arabica'];
-const rand = Math.floor(Math.random() * words.length);
-const wordChoice = words[rand];
-// const letterArray = wordChoice.split('');
 const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const guessScreen = document.getElementById('guessScreen');
@@ -10,19 +6,28 @@ const missedLetters = document.getElementById('missedLetters');
 const guessRemain = document.getElementById('guessRemain');
 const winDisplay = document.getElementById('winDisplay');
 const loseScreen = document.getElementById('loseScreen');
-const wins = 0;
-const remain = 10;
-const badArray = ['Backspace', 'CapsLock', ' ', 'Tab', 'Control', 'Alt', 'Shift', 'Insert', 'Delete', 'End', 'Home', 'PageUp', 'PageDown', 'Pause', 'PrintScreen', 'Meta', ',', '.', '/', ';', '[', ']', "'", '\\', '-', '=', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'F12'];
 
-const gameObj = {
+
+let gameObj = {
+    words: ['espresso', 'americano', 'frappe', 'cappuccino', 'latte', 'macchiato', 'mocha', 'frappuccino', 'columbian', 'arabica'],
+    wins: 0,
+    remain: 10,
+    badArray: ['Backspace', 'CapsLock', ' ', 'Tab', 'Control', 'Alt', 'Shift', 'Insert', 'Delete', 'End', 'Home', 'PageUp', 'PageDown', 'Pause', 'PrintScreen', 'Meta', ',', '.', '/', ';', '[', ']', "'", '\\', '-', '=', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'F12'],
+    wordChoice() {
+        this.words[Math.floor(Math.random() * this.words.length)];
+    },
     startDisp() {
         startScreen.style.display = 'none';
         gameScreen.style.display = 'block';
         guessScreen.style.display = 'block';
-        guessRemain.textContent = remain;
-        winDisplay.textContent = wins;
-        for (let i = 0; i < wordChoice.length; i++) {
-            wordDisplay.textContent += '_';
+        guessRemain.textContent = this.remain;
+        winDisplay.textContent = this.wins;
+        if (wordDisplay.textContent === this.wordChoice.length) {
+            return;
+        } else {
+            for (let i = 0; i < this.wordChoice.length; i++) {
+                wordDisplay.textContent += '_';
+            }
         }
     },
     loseDisplay() {
@@ -34,7 +39,7 @@ const gameObj = {
         let key = event.key;
         let str = wordDisplay.textContent;
         let undArray = str.split('');
-        let pos = wordChoice.indexOf(key);
+        let pos = this.wordChoice.indexOf(key);
 
         if (pos === -1) {
             return key.toUpperCase();
@@ -63,7 +68,7 @@ const gameObj = {
         guessRemain.textContent = remain;
         wordDisplay.textContent = '';
         missedLetters.textContent = '';
-        for (let i = 0; i < wordChoice.length; i++) {
+        for (let i = 0; i < this.wordChoice.length; i++) {
             wordDisplay.textContent += '_';
         }
     },
