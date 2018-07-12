@@ -13,8 +13,9 @@ let gameObj = {
     coffeeWords: ['espresso', 'americano', 'frappe', 'cappuccino', 'latte', 'macchiato', 'mocha', 'frappuccino', 'columbian', 'arabica'],
     wins: 0,
     remain: 10,
-    badArray: ['Backspace', 'CapsLock', ' ', 'Tab', 'Control', 'Alt', 'Shift', 'Insert', 'Delete', 'End', 'Home', 'PageUp', 'PageDown', 'Pause', 'PrintScreen', 'Meta', ',', '.', '/', ';', '[', ']', "'", '\\', '-', '=', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
+    badArray: ['Backspace', 'CapsLock', ' ', 'Tab', 'Control', 'Alt', 'Shift', 'Insert', 'Delete', 'End', 'Home', 'PageUp', 'PageDown', 'Pause', 'PrintScreen', 'Meta', ',', '.', '/', ';', '[', ']', "'", '\\', '-', '=', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0','F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
     word: '',
+    gameState: false,
     wordChoice() {
         let rand = Math.floor(Math.random() * this.coffeeWords.length)
         let word = this.coffeeWords[rand];
@@ -25,12 +26,10 @@ let gameObj = {
         startScreen.style.display = 'none';
         gameScreen.style.display = 'block';
         guessScreen.style.display = 'block';
-        guessRemain.textContent = this.remain;
-        winDisplay.textContent = this.wins;
-        let word = this.wordChoice();
-        if (wordDisplay.textContent === word.length) {
-            return;
-        } else {
+        if (this.gameState === false) {
+            guessRemain.textContent = this.remain;
+            winDisplay.textContent = this.wins;
+            let word = this.wordChoice();
             for (let i = 0; i < word.length; i++) {
                 wordDisplay.textContent += '_';
             }
@@ -106,6 +105,7 @@ let gameObj = {
 document.onkeyup = (event) => {
     if (event.key === 'Enter') {
         gameObj.startDisp();
+        gameObj.gameState = true;
     } else if (event.key === 'Escape') {
         gameObj.resetDisplay();
     } else if (event.key !== 'Enter') {
