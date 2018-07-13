@@ -125,8 +125,9 @@ document.onkeyup = (event) => {
                 wordDisplay.textContent = gameObj.letterHit(event);
         } else if (gameObj.letterMiss(event) !== undefined) {
             missedLetters.textContent += gameObj.letterMiss(event);
-            let num = guessRemain.textContent--;
-            if (num === 1) {
+            gameObj.remain--;
+            guessRemain.textContent = gameObj.remain;
+            if (gameObj.remain === 0) {
                 gameObj.loseDisplay();
             }
         }
