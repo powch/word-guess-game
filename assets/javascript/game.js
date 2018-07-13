@@ -100,6 +100,15 @@ let gameObj = {
             }
         }
     },
+    badKeyCheck(event) {
+        let key = event.key;
+        let arr = this.badArray;
+        let pos = arr.indexOf(key);
+
+        if (pos !== -1) {
+            return true;
+        }
+    }
 }
 
 document.onkeyup = (event) => {
@@ -109,13 +118,11 @@ document.onkeyup = (event) => {
     } else if (event.key === 'Escape') {
         gameObj.resetDisplay();
     } else if (event.key !== 'Enter') {
-        for (let i = 0; i < gameObj.badArray.length; i++) {
-            if (event.key === gameObj.badArray[i]) {
-                return;
-            }
+        if (gameObj.badKeyCheck(event) === true) {
+            return;
         }
         if (gameObj.letterHit(event).length > 1) {
-            wordDisplay.textContent = gameObj.letterHit(event);
+                wordDisplay.textContent = gameObj.letterHit(event);
         } else if (gameObj.letterMiss(event) !== undefined) {
             missedLetters.textContent += gameObj.letterMiss(event);
             let num = guessRemain.textContent--;
