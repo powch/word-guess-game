@@ -34,9 +34,19 @@ body {
 .remainBox, .missedBox {
     border: 10px;
     border-style: solid;
-    border-color: rgb(231, 179, 127);
+    border-color: rgb(185, 136, 87);
 }
 
 #wordDisplay {
     letter-spacing: 20px;
+}
+
+#player {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+
+#vid {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
