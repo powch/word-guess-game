@@ -70,6 +70,7 @@ let gameObj = {
         loseScreen.style.display = 'none';
         gameScreen.style.display = 'block';
         guessScreen.style.display = 'block';
+        this.remain = 10;
         guessRemain.textContent = this.remain;
         wordDisplay.textContent = '';
         missedLetters.textContent = '';
@@ -91,6 +92,7 @@ let gameObj = {
                 winScreen.style.display = 'none';
                 clearInterval(timer);
             }, 1500);
+            this.remain = 10;
             guessRemain.textContent = this.remain;
             missedLetters.textContent = '';
             winDisplay.textContent++
