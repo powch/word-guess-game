@@ -90,7 +90,7 @@ let gameObj = {
                 gameScreen.style.display = 'block';
                 winScreen.style.display = 'none';
                 clearInterval(timer);
-            }, 1000);
+            }, 1500);
             guessRemain.textContent = this.remain;
             missedLetters.textContent = '';
             winDisplay.textContent++
